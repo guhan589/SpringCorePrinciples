@@ -1,9 +1,14 @@
 package hello.core.member;
 
-public class MemberServiceImpl implements MemberService{
-   private MemoryMemberRepository memberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-    public MemberServiceImpl(MemoryMemberRepository memberRepository) {
+@Component
+public class MemberServiceImpl implements MemberService{
+   private MemberRepository memberRepository;
+
+   @Autowired //생성자가 하나일경우 생략가능
+    public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
@@ -15,5 +20,11 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public Member findMember(Long memberId) {
         return memberRepository.findById(memberId);
+    }
+
+    
+    //테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
