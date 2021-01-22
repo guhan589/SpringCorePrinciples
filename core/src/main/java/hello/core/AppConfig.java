@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig { // 객체를 생성하고 관리하면서 의존관계를 연결해주는 것을
                         // IOC컨테이너 또는 DI컨테이너라고 함
 
-
 //    @Autowired MemberRepository memberRepository;
     // @Bean이 적힌 메소드를 모두 호출한다.
     @Bean
@@ -31,11 +30,11 @@ public class AppConfig { // 객체를 생성하고 관리하면서 의존관계�
     @Bean
     public OrderService orderService(){
         System.out.println("call AppConfig.memberService");
-        return new OrderServiceImpl(memberRepository(), DiscountPolicy());
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
 
     }
     @Bean
-    public RateDiscountPolicy DiscountPolicy() {
+    public RateDiscountPolicy discountPolicy() {
         return new RateDiscountPolicy();
     }
 }

@@ -14,7 +14,7 @@ public class OrderServiceTest {
     OrderService orderService;
 
     @BeforeEach
-    public void beforeEach(){
+    public void beforeEach(){ //각 테스트를 진행하기전 호출되는 메소드
         AppConfig appConfig = new AppConfig();
         memberService = appConfig.memberService();
         orderService = appConfig.orderService();
