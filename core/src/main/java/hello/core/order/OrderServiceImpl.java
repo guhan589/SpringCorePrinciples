@@ -8,10 +8,11 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor //생성자 자동생성
+//@RequiredArgsConstructor //생성자 자동생성
 public class OrderServiceImpl implements OrderService{
 
 
@@ -26,8 +27,14 @@ public class OrderServiceImpl implements OrderService{
      * 이유: 생성자를 생성하고 개발자가 DI받은 객체를 변수에 저장안할수가 있기에(this.discountPolicy = discountPolicy)
      * 주입을 안할때 에러발생 및 에러를 통해 개발자가 이를 알 수 있다. 또한 불변(변수값이 변하지 않도록)이  가능하다
      * */
-    private final MemberRepository memberRepository;
-    private final DiscountPolicy discountPolicy;
+    private MemberRepository memberRepository;
+    private DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, /*@Qualifier("mainDiscountPolicy")*/ DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
     /**
      * 의존관계 주입은 4가지 종류가 있다
      * (생성자 주입, 수정자주입(setter), 필드 주입, 일반 메서드 주입)

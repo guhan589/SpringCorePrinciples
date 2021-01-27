@@ -30,8 +30,8 @@ public class AppConfig { // 객체를 생성하고 관리하면서 의존관계�
     @Bean
     public OrderService orderService(){
         System.out.println("call AppConfig.memberService");
-        return null;
-//        return new OrderServiceImpl(memberRepository(), discountPolicy());
+
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
 
     }
     @Bean
