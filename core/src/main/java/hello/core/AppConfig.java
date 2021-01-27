@@ -23,14 +23,15 @@ public class AppConfig { // 객체를 생성하고 관리하면서 의존관계�
         return new MemberServiceImpl(memberRepository());
     }
     @Bean
-    public  MemoryMemberRepository memberRepository() {
+    public MemoryMemberRepository memberRepository() {
         System.out.println("call AppConfig.memberService");
         return new MemoryMemberRepository();
     }
     @Bean
     public OrderService orderService(){
         System.out.println("call AppConfig.memberService");
-        return new OrderServiceImpl(memberRepository(), discountPolicy());
+        return null;
+//        return new OrderServiceImpl(memberRepository(), discountPolicy());
 
     }
     @Bean
