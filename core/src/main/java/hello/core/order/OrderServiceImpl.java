@@ -1,5 +1,6 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDisountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
 import hello.core.discount.RateDiscountPolicy;
@@ -27,10 +28,11 @@ public class OrderServiceImpl implements OrderService{
      * 이유: 생성자를 생성하고 개발자가 DI받은 객체를 변수에 저장안할수가 있기에(this.discountPolicy = discountPolicy)
      * 주입을 안할때 에러발생 및 에러를 통해 개발자가 이를 알 수 있다. 또한 불변(변수값이 변하지 않도록)이  가능하다
      * */
-    private MemberRepository memberRepository;
-    private DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 
-    public OrderServiceImpl(MemberRepository memberRepository, /*@Qualifier("mainDiscountPolicy")*/ DiscountPolicy discountPolicy) {
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, /*@Qualifier("mainDiscountPolicy")*/ /*`@MainDisountPolicy*/ DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
