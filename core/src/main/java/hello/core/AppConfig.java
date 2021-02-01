@@ -17,6 +17,7 @@ public class AppConfig { // 객체를 생성하고 관리하면서 의존관계�
 
 //    @Autowired MemberRepository memberRepository;
     // @Bean이 적힌 메소드를 모두 호출한다.
+    int count = 0;
     @Bean
     public MemberService memberService(){
         System.out.println("call AppConfig.memberService");
@@ -24,12 +25,12 @@ public class AppConfig { // 객체를 생성하고 관리하면서 의존관계�
     }
     @Bean
     public MemoryMemberRepository memberRepository() {
-        System.out.println("call AppConfig.memberService");
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
     @Bean
     public OrderService orderService(){
-        System.out.println("call AppConfig.memberService");
+        System.out.println("call AppConfig.orderService");
 
         return new OrderServiceImpl(memberRepository(), discountPolicy());
 
