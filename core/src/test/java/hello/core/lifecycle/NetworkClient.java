@@ -39,14 +39,14 @@ public class NetworkClient /*implements InitializingBean, DisposableBean */{
         System.out.println("close:" + url);
     }
 
-    @PostConstruct
+    @PostConstruct //객체 생성후 별도의 초기화 작업을 위해 호출되는 메서드를 구현시 사용
     public void init() {
         System.out.println("NetworkClient.init");
         connect();
         call("초기화 연결 메시지");
     }
 
-    @PreDestroy
+    @PreDestroy //객체 Bean을 제거하기 전에 해야할 작업이 있을시 사용함
     public void close() {
         System.out.println("NetworkClient.close");
         disconnect();
